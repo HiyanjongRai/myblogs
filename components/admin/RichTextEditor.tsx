@@ -75,7 +75,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
   // Sync external content changes
   useEffect(() => {
     if (editor && content !== editor.getHTML()) {
-      editor.commands.setContent(content, false);
+      editor.commands.setContent(content, false, { preserveWhitespace: "full" });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [content]);
