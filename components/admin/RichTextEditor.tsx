@@ -74,7 +74,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
     if (!editor) return;
 
     if (content !== editor.getHTML()) {
-      editor.commands.setContent(content, {}); // TypeScript-safe
+      editor.commands.setContent(content);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [content]);
