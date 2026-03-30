@@ -30,17 +30,14 @@ interface RichTextEditorProps {
   placeholder?: string;
 }
 
-function ToolbarButton({
-  onClick,
-  active,
-  title,
-  children,
-}: {
+interface ToolbarButtonProps {
   onClick: () => void;
   active?: boolean;
   title: string;
   children: React.ReactNode;
-}) {
+}
+
+function ToolbarButton({ onClick, active, title, children }: ToolbarButtonProps) {
   return (
     <button
       type="button"
@@ -72,12 +69,14 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
     },
   });
 
-  // Sync external content changes
+  // Sync external content changes safely
   useEffect(() => {
-    if (editor && content !== editor.getHTML()) {
-      editor.commands.setContent(content);
+    if (!editor) return;
+
+    if (content !== editor.getHTML()) {
+      editor.commands.setContent(content, {}); // TypeScript-safe
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [content]);
 
   if (!editor) return null;
@@ -85,6 +84,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
   return (
     <div className="rte-wrap">
       <div className="rte-toolbar">
+        {/* Basic formatting */}
         <ToolbarButton onClick={() => editor.chain().focus().toggleBold().run()} active={editor.isActive("bold")} title="Bold">
           <Bold size={14} />
         </ToolbarButton>
@@ -100,6 +100,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
 
         <span className="rte-divider" />
 
+        {/* Headings */}
         <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} active={editor.isActive("heading", { level: 1 })} title="Heading 1">
           <Heading1 size={14} />
         </ToolbarButton>
@@ -109,6 +110,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
 
         <span className="rte-divider" />
 
+        {/* Lists & blockquote */}
         <ToolbarButton onClick={() => editor.chain().focus().toggleBulletList().run()} active={editor.isActive("bulletList")} title="Bullet List">
           <List size={14} />
         </ToolbarButton>
@@ -124,6 +126,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
 
         <span className="rte-divider" />
 
+        {/* Text alignment */}
         <ToolbarButton onClick={() => editor.chain().focus().setTextAlign("left").run()} active={editor.isActive({ textAlign: "left" })} title="Align Left">
           <AlignLeft size={14} />
         </ToolbarButton>
@@ -136,6 +139,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
 
         <span className="rte-divider" />
 
+        {/* Undo / Redo */}
         <ToolbarButton onClick={() => editor.chain().focus().undo().run()} active={false} title="Undo">
           <Undo size={14} />
         </ToolbarButton>
@@ -143,6 +147,7 @@ export default function RichTextEditor({ content, onChange, placeholder }: RichT
           <Redo size={14} />
         </ToolbarButton>
       </div>
+
       <EditorContent editor={editor} />
     </div>
   );
