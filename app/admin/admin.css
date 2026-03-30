@@ -1,0 +1,254 @@
+@reference "tailwindcss";
+
+/* ── Shell ─────────────────────────────────────────────── */
+.admin-shell {
+  @apply flex h-screen w-full bg-[#f7f8fc] text-gray-800 overflow-hidden font-sans;
+}
+.admin-main {
+  @apply flex flex-col flex-1 h-screen overflow-hidden transition-all duration-300;
+}
+.admin-content {
+  @apply flex-1 overflow-y-auto bg-[#f7f8fc] p-6 lg:p-8;
+}
+
+/* ── Page Layout ────────────────────────────────────────── */
+.admin-page { @apply w-full max-w-[1600px] mx-auto; }
+.page-header {
+  @apply flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8;
+}
+.page-title { @apply text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-2; }
+.page-subtitle { @apply text-gray-500 text-sm mt-0.5; }
+.page-title-icon { @apply text-blue-600; }
+
+/* ── Buttons ────────────────────────────────────────────── */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-all shadow-sm active:scale-95 disabled:opacity-50;
+}
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 px-4 py-2 rounded-xl font-semibold text-sm transition-all shadow-sm active:scale-95;
+}
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-xl text-sm font-medium transition-colors;
+}
+.btn-ghost-sm {
+  @apply inline-flex items-center justify-center text-gray-500 hover:text-gray-900 p-2 rounded-xl hover:bg-gray-100 transition-colors;
+}
+.btn-danger {
+  @apply inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl font-semibold text-sm transition-all shadow-sm active:scale-95;
+}
+.btn-spinner {
+  @apply w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin;
+}
+
+/* ── Tables ────────────────────────────────────────────── */
+.admin-table { @apply w-full text-sm text-left border-collapse; }
+.admin-table th {
+  @apply border-b border-gray-100 pb-3 text-gray-500 font-semibold tracking-wide uppercase text-xs;
+}
+.admin-table td { @apply py-4 border-b border-gray-50 align-middle; }
+.admin-table tbody tr { @apply hover:bg-gray-50/70 transition-colors; }
+
+/* ── Status Badges ─────────────────────────────────────── */
+.status-badge {
+  @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border;
+}
+.status-published { @apply bg-emerald-50 text-emerald-700 border-emerald-200; }
+.status-draft { @apply bg-amber-50 text-amber-700 border-amber-200; }
+.category-chip {
+  @apply inline-block px-2.5 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium border border-gray-200;
+}
+
+/* ── Toast ─────────────────────────────────────────────── */
+.toast {
+  @apply fixed top-4 left-1/2 -translate-x-1/2 z-[999] flex items-center gap-2 px-5 py-3 rounded-2xl text-sm font-semibold shadow-xl border;
+}
+.toast-success { @apply bg-white text-emerald-700 border-emerald-200; }
+.toast-error   { @apply bg-white text-red-700 border-red-200; }
+
+/* ── Form Controls ─────────────────────────────────────── */
+.form-group { @apply flex flex-col gap-1.5 mb-5; }
+.form-row { @apply grid grid-cols-1 md:grid-cols-2 gap-5; }
+.form-label { @apply text-sm font-semibold text-gray-700; }
+.form-input, .form-textarea, .form-select {
+  @apply w-full rounded-xl border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900
+         focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm;
+}
+.title-input { @apply text-xl font-bold text-gray-900; }
+.char-count { @apply text-xs text-gray-400 self-end mt-0.5; }
+.saved-indicator {
+  @apply inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200;
+}
+
+/* ── Step Builder ──────────────────────────────────────── */
+.step-builder { @apply w-full; }
+.steps-list { @apply flex flex-col gap-4; }
+.steps-empty {
+  @apply py-12 border-2 border-dashed border-gray-200 rounded-2xl text-center text-gray-400 text-sm font-medium bg-gray-50/50;
+}
+.step-card {
+  @apply bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden
+         transition-all hover:shadow-md;
+}
+.step-dragging { @apply opacity-50 shadow-2xl scale-[1.02]; }
+.step-card-header {
+  @apply flex items-center justify-between px-4 py-3 bg-gray-50 border-b border-gray-100;
+}
+.step-card-header-left { @apply flex items-center gap-3 flex-1; }
+.step-card-header-right { @apply flex items-center gap-1.5; }
+.step-drag-handle {
+  @apply text-gray-400 hover:text-gray-700 cursor-grab active:cursor-grabbing p-1 rounded-md hover:bg-gray-200 transition-colors;
+}
+.step-number-badge {
+  @apply w-6 h-6 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold;
+}
+.step-title { @apply font-semibold text-gray-800 text-sm; }
+.step-preview-text { @apply text-gray-400 text-xs hidden sm:block truncate max-w-xs; }
+.step-collapse-btn {
+  @apply text-gray-400 hover:text-gray-800 p-1.5 rounded-lg hover:bg-gray-200 transition-colors;
+}
+.step-delete-btn {
+  @apply text-gray-400 hover:text-red-500 p-1.5 rounded-lg hover:bg-red-50 transition-colors;
+}
+.step-card-body { @apply p-5 flex flex-col gap-5; }
+.step-field { @apply flex flex-col gap-2; }
+.step-field-label { @apply text-xs font-bold text-gray-500 uppercase tracking-wider; }
+.add-step-btn {
+  @apply w-full py-3.5 border-2 border-dashed border-gray-200 hover:border-blue-400
+         hover:bg-blue-50/50 text-gray-500 hover:text-blue-600 rounded-2xl flex justify-center
+         items-center gap-2 font-semibold text-sm transition-all;
+}
+
+/* ── Image Uploader ────────────────────────────────────── */
+.image-uploader { @apply w-full; }
+.upload-dropzone {
+  @apply border-2 border-dashed border-gray-200 rounded-2xl p-6 flex flex-col items-center
+         justify-center text-center cursor-pointer hover:bg-blue-50/30 hover:border-blue-400
+         transition-all bg-gray-50/50;
+}
+.dropzone-active  { @apply border-blue-500 bg-blue-50; }
+.upload-icon      { @apply text-gray-400 mb-2; }
+.upload-icon-active { @apply text-blue-500 mb-2; }
+.upload-prompt-main { @apply font-semibold text-gray-700 text-sm; }
+.upload-prompt-sub  { @apply text-xs text-gray-400 mt-0.5; }
+.uploaded-images-grid {
+  @apply grid grid-cols-2 sm:grid-cols-3 gap-3 mb-3;
+}
+.uploaded-image-item {
+  @apply relative aspect-video rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-gray-100;
+}
+.uploaded-img { @apply w-full h-full object-cover; }
+.remove-image-btn {
+  @apply absolute top-1.5 right-1.5 bg-white text-gray-700 p-1.5 rounded-full
+         opacity-0 group-hover:opacity-100 hover:bg-red-500 hover:text-white transition-all shadow-sm;
+}
+
+/* ── Rich Text Editor ─────────────────────────────────── */
+.rte-wrap {
+  @apply rounded-xl border border-gray-200 overflow-hidden bg-white shadow-sm
+         focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-400 transition-all;
+}
+.rte-toolbar {
+  @apply flex flex-wrap items-center gap-0.5 bg-gray-50 px-2 py-1.5 border-b border-gray-200;
+}
+.rte-toolbar-btn {
+  @apply p-1.5 text-gray-600 rounded-lg hover:bg-gray-200 hover:text-gray-900 transition-colors;
+}
+.rte-toolbar-active { @apply bg-blue-100 text-blue-700; }
+.rte-divider { @apply w-px h-4 bg-gray-300 mx-0.5; }
+.rte-editor-area {
+  @apply text-sm text-gray-800 outline-none min-h-[160px] p-4 leading-relaxed;
+}
+.preview-step-text { @apply text-sm text-gray-800 leading-relaxed; }
+.rte-editor-area h1, .preview-step-text h1 { @apply text-2xl font-bold mt-4 mb-2 text-gray-900; }
+.rte-editor-area h2, .preview-step-text h2 { @apply text-xl font-bold mt-4 mb-2 text-gray-900; }
+.rte-editor-area h3, .preview-step-text h3 { @apply text-lg font-bold mt-3 mb-1 text-gray-900; }
+.rte-editor-area p, .preview-step-text p { @apply my-2 leading-relaxed; }
+.rte-editor-area ul, .preview-step-text ul { @apply list-disc list-inside my-2 pl-2 space-y-1; }
+.rte-editor-area ol, .preview-step-text ol { @apply list-decimal list-inside my-2 pl-2 space-y-1; }
+.rte-editor-area blockquote, .preview-step-text blockquote {
+  @apply border-l-4 border-blue-400 pl-4 py-1 my-3 bg-blue-50/50 text-gray-600 rounded-r-lg italic;
+}
+.rte-editor-area p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* ── Editor Sections ──────────────────────────────────── */
+.editor-section {
+  @apply bg-white rounded-2xl border border-gray-100 p-6 shadow-sm;
+}
+.editor-section-title {
+  @apply text-base font-bold text-gray-900 mb-4 pb-3 border-b border-gray-100 flex items-center gap-2;
+}
+.editor-section-desc { @apply text-sm text-gray-500 mb-5; }
+.create-header-actions { @apply flex items-center gap-2; }
+
+/* ── Preview Panel ─────────────────────────────────────── */
+.blog-preview { @apply flex flex-col gap-4; }
+.preview-empty {
+  @apply flex flex-col items-center justify-center py-16 text-center text-gray-400 gap-3;
+}
+.preview-empty-icon { @apply text-gray-300; }
+.preview-category {
+  @apply inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-full uppercase tracking-wider;
+}
+.preview-cover { @apply w-full rounded-xl aspect-video object-cover shadow-sm; }
+.preview-title { @apply text-2xl font-bold text-gray-900 leading-tight; }
+.preview-description { @apply text-gray-600 text-sm leading-relaxed; }
+.preview-tags { @apply flex flex-wrap gap-1.5 items-center text-gray-400; }
+.preview-tag {
+  @apply px-2.5 py-0.5 bg-gray-100 text-gray-600 rounded-full text-xs font-medium;
+}
+.preview-divider { @apply border-gray-100; }
+.preview-steps { @apply flex flex-col gap-6; }
+.preview-step { @apply flex flex-col gap-3; }
+.preview-step-header { @apply flex items-center gap-2; }
+.preview-step-num {
+  @apply w-6 h-6 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold;
+}
+.preview-step-label { @apply text-xs font-bold text-gray-400 uppercase tracking-wider; }
+.preview-step-images { @apply grid grid-cols-2 gap-2; }
+.preview-step-img { @apply w-full rounded-xl aspect-video object-cover; }
+
+/* ── Tag Input ─────────────────────────────────────────── */
+.tags-input-wrap {
+  @apply flex items-center bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm
+         focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-400;
+}
+.tags-input   { @apply flex-1 py-2.5 px-3.5 outline-none text-sm; }
+.tags-icon    { @apply text-gray-400 ml-3; }
+.tags-add-btn {
+  @apply p-2.5 text-gray-500 hover:text-blue-600 hover:bg-gray-50 border-l border-gray-200 transition-colors;
+}
+.tags-list  { @apply flex flex-wrap gap-2 mt-3; }
+.tag-chip {
+  @apply inline-flex items-center gap-1 px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-full border border-blue-100;
+}
+.tag-chip button {
+  @apply hover:text-red-500 rounded-full hover:bg-white p-0.5 ml-0.5 transition-colors;
+}
+
+/* ── Status Toggle ─────────────────────────────────────── */
+.toggle-wrap  { @apply inline-flex p-1 bg-gray-100 rounded-xl gap-1; }
+.toggle-btn   {
+  @apply flex items-center justify-center gap-1.5 flex-1 px-4 py-1.5 text-sm font-semibold rounded-lg text-gray-500 transition-all;
+}
+.toggle-active     { @apply bg-white text-gray-900 shadow-sm; }
+.toggle-active-pub { @apply bg-emerald-500 text-white shadow-sm; }
+
+/* ── Filters Bar ───────────────────────────────────────── */
+.filters-bar { @apply flex flex-col sm:flex-row gap-3 mb-6; }
+.filter-search { @apply relative flex-1; }
+.filter-search-icon { @apply absolute left-3 top-1/2 -translate-y-1/2 text-gray-400; }
+.filter-search-input {
+  @apply w-full pl-9 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm shadow-sm
+         focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 outline-none;
+}
+.filter-controls { @apply flex flex-wrap items-center gap-2; }
+.filter-select {
+  @apply py-2.5 pl-3 pr-8 bg-white border border-gray-200 rounded-xl text-sm shadow-sm
+         cursor-pointer hover:border-gray-300 focus:outline-none;
+}
